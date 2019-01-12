@@ -33,9 +33,14 @@ public class MainActivity extends AppCompatActivity {
       //  final ActionBar actionBar = getSupportActionBar();
 //        getActionBar().setDisplayHomeAsUpEnabled(true);
 //        getActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setTitle(null);
+        if(getSupportActionBar() != null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+            getActionBar().setTitle(null);
+
+        }
+
 
         compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendarView.setUseThreeLetterAbbreviation(true);
@@ -58,11 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
-                getSupportActionBar().setTitle(simpleDateFormat.format(firstDayOfNewMonth));
+                if(getSupportActionBar() != null) {
+                    getActionBar().setDisplayHomeAsUpEnabled(true);
+//                    getActionBar().setTitle(null);
+                    getActionBar().setTitle(simpleDateFormat.format(firstDayOfNewMonth));
+
+                }
+//                    getSupportActionBar().setTitle(simpleDateFormat.format(firstDayOfNewMonth));
             }
         });
 
-     
+
 
     }
 }
