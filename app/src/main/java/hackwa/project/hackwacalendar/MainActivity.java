@@ -9,14 +9,14 @@ import android.util.EventLog;
 import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
-
+import com.github.sundeepk.compactcalendarview.domain.Event;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.EventListener;
 
 import java.util.Locale;
 
-import static android.util.EventLog.*;
+import android.util.EventLog.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,14 +30,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle(null);
+      //  final ActionBar actionBar = getSupportActionBar();
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setTitle(null);
 
         compactCalendarView = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendarView.setUseThreeLetterAbbreviation(true);
 
-        EventListener evl = new EventListener(Color.RED, 1477054800000L, "Teachers' Professional Day");
+        Event evl = new Event(Color.RED, 1477054800000L, "Teachers' Professional Day");
         compactCalendarView.addEvent(evl);
 
         compactCalendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
@@ -55,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
-                actionBar.setTitle(simpleDateFormat.format(firstDayOfNewMonth));
+                getSupportActionBar().setTitle(simpleDateFormat.format(firstDayOfNewMonth));
             }
         });
 
+     
 
     }
 }
